@@ -175,12 +175,6 @@ class VirtualBufferTextInfo(browseMode.BrowseModeDocumentTextInfo,textInfos.offs
 		if o.hasIrrelevantLocation:
 			raise LookupError("Object is off screen, invisible or has no location")
 		return o.location
-=======
-		if not o.location:
-			raise LookupError
-		left, top, width, height = o.location
-		return textInfos.Point(left + width / 2, top + height / 2)
->>>>>>> geckoPointFromOffset
 
 	def _getNVDAObjectFromOffset(self,offset):
 		docHandle,ID=self._getFieldIdentifierFromOffset(offset)
