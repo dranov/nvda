@@ -732,7 +732,7 @@ def _speakTextInfo_addMath(speechSequence, info, field):
 	except (NotImplementedError, LookupError):
 		return
 
-def speakTextInfo(info,useCache=True,formatConfig=None,unit=None,reason=controlTypes.REASON_QUERY,index=None,onlyInitialFields=False,suppressBlanks=False):
+def speakTextInfo(info,useCache=True,formatConfig=None,unit=None,reason=controlTypes.REASON_QUERY,index=None,onlyInitialFields=False,suppressBlanks=False,ignoreIndentCache=False):
 	onlyCache=reason==controlTypes.REASON_ONLYCACHE
 	if isinstance(useCache,SpeakTextInfoState):
 		speakTextInfoState=useCache
@@ -931,7 +931,7 @@ def speakTextInfo(info,useCache=True,formatConfig=None,unit=None,reason=controlT
 				if autoLanguageSwitching and newLanguage!=lastLanguage:
 					relativeSpeechSequence.append(LangChangeCommand(newLanguage))
 					lastLanguage=newLanguage
-	if reportIndentation and speakTextInfoState and allIndentation!=speakTextInfoState.indentationCache:
+	if reportIndentation and speakTextInfoState and (allIndentation!=speakTextInfoState.indentationCache or ignoreIndentCache):
 		indentationSpeech=getIndentationSpeech(allIndentation, formatConfig)
 		if autoLanguageSwitching and speechSequence[-1].lang is not None:
 			# Indentation must be spoken in the default language,

@@ -142,7 +142,7 @@ class GlobalCommands(ScriptableObject):
 		info.expand(textInfos.UNIT_LINE)
 		scriptCount=scriptHandler.getLastScriptRepeatCount()
 		if scriptCount==0:
-			speech.speakTextInfo(info,unit=textInfos.UNIT_LINE,reason=controlTypes.REASON_CARET)
+			speech.speakTextInfo(info,unit=textInfos.UNIT_LINE,reason=controlTypes.REASON_CARET, ignoreIndentCache=True)
 		else:
 			speech.spellTextInfo(info,useCharacterDescriptions=scriptCount>1)
 	# Translators: Input help mode message for report current line command.
